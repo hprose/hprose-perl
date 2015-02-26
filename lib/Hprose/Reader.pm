@@ -13,7 +13,7 @@
 #                                                          #
 # Hprose Reader class for perl                             #
 #                                                          #
-# LastModified: Feb 18, 2015                               #
+# LastModified: Feb 27, 2015                               #
 # Author: Ma Bingyao <andot@hprose.com>                    #
 #                                                          #
 ############################################################
@@ -469,8 +469,8 @@ sub read_array {
 
 sub read_hash_without_tag {
     my $self = shift;
-    my $hash;
-    tie %$hash, 'Tie::RefHash';
+    tie my %hash, 'Tie::RefHash';
+    my $hash = \%hash;
     $self->{refer}->{set}($self, $hash);
     my $stream = $self->{stream};
     my $count = readint($stream, Hprose::Tags->Openbrace);
