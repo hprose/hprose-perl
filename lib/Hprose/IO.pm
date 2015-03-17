@@ -13,7 +13,7 @@
 #                                                          #
 # Hprose IO subs for perl                                  #
 #                                                          #
-# LastModified: Jan 8, 2014                                #
+# LastModified: Mar 17, 2015                               #
 # Author: Ma Bingyao <andot@hprose.com>                    #
 #                                                          #
 ############################################################
@@ -47,6 +47,9 @@ sub unicode_length {
         elsif (($a & 0xF8) == 0xF0) {
             $pos += 3;
             $len -= 2;
+        }
+        else {
+            return -1;
         }
     }
     return $len;
